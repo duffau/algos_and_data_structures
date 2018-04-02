@@ -6,7 +6,6 @@
 
 
 int main(int argc, char** argv) {
-	const char *algo_name = "insertion_sort";
 	float time_spent;
 	int i, j, size, k;
 	const int reps = 100;
@@ -25,9 +24,9 @@ int main(int argc, char** argv) {
 	printf("\nTiming insertion sort\n");
 	printf("Array sizes chosen: ");
 	print_array(sizes, sizes_len);
-	FILE *csvfile = fopen(algo_name, "w");
+	FILE *csvfile = fopen("insertion_sort.dat", "w");
 	if (csvfile == NULL) {
-		printf("Error opening csv file!");
+		printf("Error opening .dat file!");
 		exit(1);
 	}
 	
