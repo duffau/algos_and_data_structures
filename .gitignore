@@ -2,5 +2,6 @@
 *.out
 *.o
 
-# Data from time measurments
+# Data fies
+*.png
 *.dat
