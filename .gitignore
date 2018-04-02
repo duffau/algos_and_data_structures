@@ -1,2 +1,6 @@
 # Compiled executables
 *.out
+*.o
+
+# Data from time measurments
+*.dat
