@@ -6,6 +6,11 @@
 *.png
 *.dat
 *.csv
+*.pdf
+
+# TeX additional output
+*.aux
+*.log
 
 # Plots
 !time_measurments.png
