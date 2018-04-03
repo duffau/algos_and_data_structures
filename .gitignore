@@ -6,3 +6,6 @@
 *.png
 *.dat
 *.csv
+
+# Plots
+!time_measurments.png
