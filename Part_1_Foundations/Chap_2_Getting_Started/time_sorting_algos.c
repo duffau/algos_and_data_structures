@@ -5,6 +5,7 @@
 #include "sorting_algos.h"
 
 void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *csvfile, int sizes[], int sizes_len, int reps);
+void checkSortedArray(int array[], int len);
 
 int main(int argc, char** argv) {
 	const int reps = 100;
@@ -33,6 +34,7 @@ int main(int argc, char** argv) {
 	}
 	timeSortingAlgoWorstCase(*InsertionSort, "insertion_sort", csvfile, sizes, sizes_len, reps);
 	timeSortingAlgoWorstCase(*MergeSort, "merge_sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*BinaryInsertionSort, "binary_insertion_sort", csvfile, sizes, sizes_len, reps);
 	fclose(csvfile);
 
 	
@@ -61,10 +63,25 @@ void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *
 			begin = clock();
 			(*sortingAlgo)(dynarray, size);
 			end = clock();
+			checkSortedArray(dynarray, size);
 			time_spent = (float)(end - begin) / CLOCKS_PER_SEC;
 			mean(time_spent, &avg_time, &avg_count);
 		}
 		printf("Average time spent: %.3e over %d reps for array of size %d\n", avg_time, reps, size);
 		fprintf(csvfile, "%d, %e, %s\n", size, avg_time, name);
+	}
+}
+
+void checkSortedArray(int array[], int len) {
+	int i;
+
+	for (i=0; i<len-1; i++) {
+		if (array[i] <= array[i+1]) {
+
+		} else  {
+			printf("Array is not sorted.\n");
+			print_array(array, len);
+			exit(1);
+		}
 	}
 }
