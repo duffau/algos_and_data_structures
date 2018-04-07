@@ -21,13 +21,21 @@
 \Return $i$
 \EndIf
 \EndFor
-\Return NIL
+\Return NILL
 \EndProcedure
 \end{algorithmic}
 
 \paragraph{Proof of correctness}
-\subparagraph{Initialization}
 
+To prove linear search is correct, I formulate a \emph{loop invariant} that need to hold true at \emph{initialization}, during \emph{maintainance} and at \emph{termination}.
+
+\subparagraph{Loop invariant} At the start of loop iteration $i$, the value $v$ is not in the sub-array $A[1..i-1]$. In formal terms, $v \notin \{ A[j] \vert j\in\{1,...,i-1\} \}$
+
+\subparagraph{Initialization} At initialization $i=0$, so the sub-array $A[1..i-1]$ is empty. So $v$ is trivially not a member of that array, and the loop invariant holds.
+
+\subparagraph{Maintenance} Assuming that $v$ is not in the sub-array $A[1..i-1]$ at the start of iteration $i$, then two outcomes are possible during the iteration. Either, $A[i] == v$ and the loop terminates, or $A[i]\neq v$ and $v$ is not an element of the array $A[1..i]$ which is the loop invariance condition for iteration $i+1$.
+
+\subparagraph{Termination} The algoritm terminates in two different ways. The first happens when $A[i] == v$, then the loop invariant still holds from the initialazation and maintenance steps $v \notin A[1..i-1]$. The second happens when $i=n+1$, in that case $v \notin A[1..i-1]=A[1..n]$, which is the entire array, and the procedure returns NILL.
 
 
 \end{document}
