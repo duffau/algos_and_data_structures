@@ -50,7 +50,7 @@ void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *
 	
 	size = sizes[0];
 	int *dynarray = malloc(size * sizeof *dynarray);
-	printf("\nTimming %s\n", name);
+	printf("\nTiming %s\n", name);
 	for(k=0; k < sizes_len; k++) {
 		size = sizes[k];
 		dynarray = realloc(dynarray, size * sizeof *dynarray);	
