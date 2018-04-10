@@ -8,17 +8,37 @@ void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *
 void checkSortedArray(int array[], int len);
 
 int main(int argc, char** argv) {
-	const int reps = 100;
-	int sizes[argc-1];
+	int reps = 10000;
+	int start_size = 1;
+	int end_size = 50;
+	int array_incr = 1;
+	int optind;
+
+	for (optind = 1; optind < argc && argv[optind][0] == '-'; optind+=2) {
+        switch (argv[optind][1]) {
+        case 's': start_size = atoi(argv[optind+1]); break;
+        case 'e': end_size = atoi(argv[optind+1]); break;
+        case 'r': reps = atoi(argv[optind+1]); break;
+        default:
+            fprintf(stderr, "Usage: %s [-ilw] [file...]\n", argv[0]);
+            exit(EXIT_FAILURE);
+    	}
+	}
+    int sizes_len = (end_size - start_size)/array_incr + 1;
+	int sizes[sizes_len];
+	//int sizes_len = sizeof(sizes) / sizeof(sizes[0]);
 	int i;
+	for (i=0; i< sizes_len; i++) {
+		if (i == 0) {
+			sizes[i] = start_size;
+		} else {
+			sizes[i] = sizes[i-1] + array_incr;
+		}
+	}
 
-	for (i=0; i<argc-1; i++) {
-		sizes[i] = atoi(argv[i+1]);
-	} 
-
-	int sizes_len = sizeof(sizes) / sizeof(sizes[0]);
 
 	printf("Timing sorting algos\n");
+	printf("Reps: %d\n", reps);
 	printf("Array sizes chosen: ");
 	print_array(sizes, sizes_len);
 
