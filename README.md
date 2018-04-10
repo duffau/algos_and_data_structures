@@ -1,6 +1,6 @@
 # Algorithms and Data Structures
 
-This repo contains the C-code which is the result of my self-study of _Introduction to Algorithms_ by Cormen, Leiserson, Rivest & Stein.  
+This repo contains the C programs and exercise answers, which are the result of my self-study of _Introduction to Algorithms_ by Cormen, Leiserson, Rivest & Stein.  
 
 
 ## Part 1 - Foundations
