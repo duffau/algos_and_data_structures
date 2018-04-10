@@ -5,3 +5,5 @@ void ReversedInsertionSort(int array[], int len);
 void MergeSort(int array[], int len);
 void mergeSort(int array[], int start, int end);
 void merge(int array[], int start, int mid, int end);
+void SelectionSort(int array[], int len);
+int smallestElement(int array[], int start, int end);
