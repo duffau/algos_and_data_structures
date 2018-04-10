@@ -7,6 +7,9 @@
 \let\oldReturn\Return
 \renewcommand{\Return}{\State\oldReturn}
 
+\providecommand{\ceil}[1]{\left \lceil #1 \right \rceil }
+\providecommand{\floor}[1]{\left \lfloor #1 \right \rfloor }
+
 \title{Exercise answers - Chapter 2 - Getting Started}
 \author{Christian Duffau-Rasmussen}
 
@@ -17,9 +20,9 @@
 \begin{algorithmic}[1]
 \Procedure{Linear-Search}{A, v}
 \For{i}{1}{\text{length}[A]}
-\If{$A[i]==v$}
-\Return $i$
-\EndIf
+	\If{$A[i]==v$}
+		\Return $i$
+	\EndIf
 \EndFor
 \Return NILL
 \EndProcedure
@@ -37,8 +40,27 @@ To prove linear search is correct, I formulate a \emph{loop invariant} that need
 
 \subparagraph{Termination} The algoritm terminates in two different ways. The first happens when $A[i] == v$, assuming $v \notin A[1..i-1]$ before termination, then the loop invariant still holds. Again, assuming $v \notin A[1..i-1]$ before termination. In the second case we have that $i=n+1$, in that case $v \notin A[1..i-1]=A[1..n]$, which is the entire array, and the procedure returns NILL.
 
-\subsubsection*{2.2-3}
+\subsubsection*{2.2-3 Running time of Linear search}
 Assuming the index of correct element is uniformlly distributed from 1 to $n$, the expected index is $E[i] = n/2$. So the average case running time must be $c_1\frac{n}{2} + c_2$, where $c_1$ is the running time of each comparison $A[i]==v$ and the loop increment,  and $c_2$ is the running time of the return statement. In the worst case the algorithm needs to run through all $n$ elements as well as returning NILL, so the running time is $c_1n + c_2$.  
 Both the average and worst case running times of linear search are $\Theta(n)$.
+
+\subsubsection*{2.3-5 Insertion srort with Binary search}
+
+\begin{algorithmic}[1]
+\Procedure{Binary-Search}{A, p, r, v}
+\If{$p\leq r$}
+	\State $m=p + \floor{\frac{r - p}{2}}$
+	\If{$A[m]==v$}
+		\Return m
+	\ElsIf{$A[m] > v$}
+		\Return \Call{Binary-Search}{A, p, m - 1, v}
+	\Else
+		\Return \Call{Binary-Search}{A, m +1, r, v}
+	\EndIf
+\EndIf
+\Return $p$
+\EndProcedure
+\end{algorithmic}
+
 
 \end{document}
