@@ -7,4 +7,4 @@ This repo contains the C-code which is the result of my self-study of _Introduct
 
 ### Getting Satrted
 
- ![Sorting algos worst case timings](algos_and_data_structures/Part_1_Foundations/Chap_2_Getting_Started/time_measurments.png) 
+ ![Sorting algos worst case timings](https://raw.githubusercontent.com/duffau/algos_and_data_structures/Part_1_Foundations/Chap_2_Getting_Started/time_measurments.png) 
