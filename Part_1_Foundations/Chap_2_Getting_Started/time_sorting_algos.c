@@ -55,6 +55,7 @@ int main(int argc, char** argv) {
 	timeSortingAlgoWorstCase(*InsertionSort, "insertion_sort", csvfile, sizes, sizes_len, reps);
 	timeSortingAlgoWorstCase(*MergeSort, "merge_sort", csvfile, sizes, sizes_len, reps);
 	timeSortingAlgoWorstCase(*BinaryInsertionSort, "binary_insertion_sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*SelectionSort, "selection_sort", csvfile, sizes, sizes_len, reps);
 	fclose(csvfile);
 
 	
