@@ -35,7 +35,10 @@ To prove linear search is correct, I formulate a \emph{loop invariant} that need
 
 \subparagraph{Maintenance} Assuming that $v$ is not in the sub-array $A[1..i-1]$ at the start of iteration $i$, then two outcomes are possible during the iteration. Either, $A[i] == v$ and the loop terminates, or $A[i]\neq v$ and $v$ is not an element of the array $A[1..i]$ which is the loop invariance condition for iteration $i+1$.
 
-\subparagraph{Termination} The algoritm terminates in two different ways. The first happens when $A[i] == v$, then the loop invariant still holds from the initialazation and maintenance steps $v \notin A[1..i-1]$. The second happens when $i=n+1$, in that case $v \notin A[1..i-1]=A[1..n]$, which is the entire array, and the procedure returns NILL.
+\subparagraph{Termination} The algoritm terminates in two different ways. The first happens when $A[i] == v$, assuming $v \notin A[1..i-1]$ before termination, then the loop invariant still holds. Again, assuming $v \notin A[1..i-1]$ before termination. In the second case we have that $i=n+1$, in that case $v \notin A[1..i-1]=A[1..n]$, which is the entire array, and the procedure returns NILL.
 
+\subsubsection*{2.2-3}
+Assuming the index of correct element is uniformlly distributed from 1 to $n$, the expected index is $E[i] = n/2$. So the average case running time must be $c_1\frac{n}{2} + c_2$, where $c_1$ is the running time of each comparison $A[i]==v$ and the loop increment,  and $c_2$ is the running time of the return statement. In the worst case the algorithm needs to run through all $n$ elements as well as returning NILL, so the running time is $c_1n + c_2$.  
+Both the average and worst case running times of linear search are $\Theta(n)$.
 
 \end{document}
