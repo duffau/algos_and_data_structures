@@ -1,6 +1,7 @@
 \documentclass{article}
 \usepackage[noend]{algpseudocode}
 \usepackage{amsmath}
+\usepackage{amssymb}
 
 \algnewcommand\algorithmicto{\textbf{to}}
 \algrenewtext{For}[3]{\algorithmicfor\ $#1 \gets #2$ \algorithmicto\ $#3$ \algorithmicdo}
@@ -44,7 +45,35 @@ To prove linear search is correct, I formulate a \emph{loop invariant} that need
 Assuming the index of correct element is uniformlly distributed from 1 to $n$, the expected index is $E[i] = n/2$. So the average case running time must be $c_1\frac{n}{2} + c_2$, where $c_1$ is the running time of each comparison $A[i]==v$ and the loop increment,  and $c_2$ is the running time of the return statement. In the worst case the algorithm needs to run through all $n$ elements as well as returning NILL, so the running time is $c_1n + c_2$.  
 Both the average and worst case running times of linear search are $\Theta(n)$.
 
-\subsubsection*{2.3-5 Insertion srort with Binary search}
+\subsubsection*{2.3-3 Linear Reccurence}
+
+To show that the reccursion 
+\begin{equation*}
+T(n) = \begin{cases}
+2 &           \text{if $n=2$}\\
+2T(n/2) + n & \text{if $n=2^k$, for $k>1$}
+\end{cases} 
+\end{equation*}
+is $T(n)=n \lg n$. Assuming that $n$ is a power of two we have $n=2^k$ for $k\in{1,2,\ldots}$. For $k=1$ we have that $T(n)=T(2)=2$ by definition of $T$.  
+\[
+2 \lg(2) = 2 = T(2).
+\]
+Hence the claim holds for $k=1$.
+
+Next, assuming that $T(2^{k-1})= 2^{k-1}\lg 2^{k-1} = (k-1)2^{k-1}$ we have that,
+\begin{equation*}
+\begin{split}
+T(n)   & = 2T(n/2) + n \\
+       & = 2T(2^k/2) + 2^k \\
+       & = 2T(2^{k-1}) + 2^k \\
+       & = 2((k-1)2^{k-1}) + 2^k \\
+       & = k2^k \\
+       & = 2^k \lg(2^k) = n \lg n
+\end{split}
+\end{equation*}
+so the claim also holds for $k$ given it holds for $k-1$, at since it holds true for $k=1$ it holds for any $k\geq1$.\hfill $\square$
+
+\subsubsection*{2.3-5 Binary search}
 
 \begin{algorithmic}[1]
 \Procedure{Binary-Search}{A, p, r, v}
@@ -54,13 +83,17 @@ Both the average and worst case running times of linear search are $\Theta(n)$.
 		\Return m
 	\ElsIf{$A[m] > v$}
 		\Return \Call{Binary-Search}{A, p, m - 1, v}
-	\Else
+	\ElsIf{$A[m] < v$}
 		\Return \Call{Binary-Search}{A, m +1, r, v}
 	\EndIf
 \EndIf
-\Return $p$
+\Return NILL
 \EndProcedure
 \end{algorithmic}
 
-
+In the worst case, binary search needs to split the array in two, untill the last split goes from two elements to a single one. A way of assessing the running time is to understand how many possible splits can be made. Assuming the length of the array is $n=2^k$, the length after the first split is simply $n/2$. Finding the length of the consequent halfed arrays, amounts to raising the \emph{half} to the nummber of splits and multiplying by the initial size, $n$. So, to find the number of splits which result in the length of 1, we need to solve the following,
+\[
+1 = \frac{n}{2^x} \quad\Leftrightarrow\quad 2^x = n \quad\Leftrightarrow\quad x = \lg n. 
+\]
+So we can conclude, that the recursion calls itself at most  $\lg n$ times, this is an indication of the worst case running time being $\Theta(\lg n)$.
 \end{document}
