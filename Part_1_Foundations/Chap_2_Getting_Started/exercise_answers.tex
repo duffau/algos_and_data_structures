@@ -18,7 +18,7 @@
 
 \maketitle
 
-\subsubsection*{2.1-3 Linear Search}
+\subsubsection*{Exercise 2.1-3 Linear Search}
 
 \begin{algorithmic}[1]
 \Procedure{Linear-Search}{A, v}
@@ -47,7 +47,7 @@ To prove linear search is correct, I formulate a \emph{loop invariant} that need
 Assuming the index of correct element is uniformlly distributed from 1 to $n$, the expected index is $E[i] = n/2$. So the average case running time must be $c_1\frac{n}{2} + c_2$, where $c_1$ is the running time of each comparison $A[i]==v$ and the loop increment,  and $c_2$ is the running time of the return statement. In the worst case the algorithm needs to run through all $n$ elements as well as returning NILL, so the running time is $c_1n + c_2$.  
 Both the average and worst case running times of linear search are $\Theta(n)$.
 
-\subsubsection*{2.3-3 Linear Reccurence}
+\subsubsection*{Exercise 2.3-3 Linear Reccurence}
 
 To show that the reccursion 
 \begin{equation*}
@@ -75,7 +75,7 @@ T(n)   & = 2T(n/2) + n \\
 \end{equation*}
 so the claim also holds for $k$ given it holds for $k-1$, at since it holds true for $k=1$ it holds for any $k\geq1$.\hfill $\square$
 
-\subsubsection*{2.3-5 Binary search}
+\subsubsection*{Exercise 2.3-5 Binary search}
 
 \begin{algorithmic}[1]
 \Procedure{Binary-Search}{A, p, r, v}
@@ -98,4 +98,82 @@ In the worst case, binary search needs to split the array in two, untill the las
 1 = \frac{n}{2^x} \quad\Leftrightarrow\quad 2^x = n \quad\Leftrightarrow\quad x = \lg n. 
 \]
 So we can conclude, that the recursion calls itself at most  $\lg n$ times, this is an indication of the worst case running time being $\Theta(\lg n)$.
+
+\subsubsection*{Problem 2-3 Horner's rule}
+
+\paragraph{a. Running time}
+The running time of each line in Horner's algoritm is given by,
+
+\begin{algorithmic}[1]
+\State $y \gets 0$ \Comment{Running time: $c_1$}
+\State $i \gets n$ \Comment{Running time: $c_1$}
+\While{$i\geq0$}   \Comment{Running time: $c_2$ repeated $n+2$ times.}
+	\State $y\gets a_i + x \cdot y$  \Comment{Running time: $c_1 + c_{+} + c_{\bullet}$ repeated $n+1$ times.}
+	\State $i \gets i - 1$ \Comment{Running time: $c_1 + c_{-}$ repeated $n+1$ times.}
+\EndWhile
+\end{algorithmic}
+
+The total running time is $T(n) = 2c_1 + c_2(n+2)+(2c_1 + c_{+} + c_{\bullet} + c_{-})(n+1)$, that is
+\[
+T(n) = C_1 + C_2n
+\]
+with $C_1 = 4c_1 + 2c_2 + c_{+} + c_{\bullet} + c_{-}$ and $C_2=2c_1 + c_2 + c_{+} + c_{\bullet} + c_{-}$. So, it's clear that $T(n)$ is a linear function of $n$ so $T(n) = \Theta(n)$.
+
+\paragraph{b. Naive polynomial evaluation}
+
+\begin{algorithmic}[1]
+\State $y \gets 0$ 
+\State $z \gets 1$ 
+\State $i \gets 0$ 
+\State $j \gets 0$ 
+\While{$i\leq n$} 
+	\While{$j < i$} \Comment{This inner loop is evaluated $\sum_{k=1}^{n+1} k$ times.}
+		\State $z \gets z\cdot x$
+		\State $j \gets j + 1$
+	\EndWhile
+	\State $y\gets y + a_i \cdot z$
+	\State $i \gets i + 1$
+	\State $z \gets 1$ 
+	\State $j \gets 0$ 
+
+\EndWhile
+\end{algorithmic}
+
+The inner loop is called $\sum_{k=1}^{n+1} k= (n+1)(n+2)/2 = n^2+3n+2$ times, and the evaluation in the outer loop are called $n$ times, so the running time is no more than,  
+\[
+T(n) = C_0 + C_1n + C_2n^2
+\]
+for the appropriate constants. So for the naive implementation $T(n)=\Theta(n^2)$.
+
+\paragraph{c. Proof of correctness}
+Consdering the loop invariant,
+\[
+y = \sum_{k=0}^{n-(i+1)}a_{k+i+1}x^k.
+\]
+\subparagraph{Initialization} We have $i=n$ so the above expression is $y = \sum_{k=0}^{-1} a_{k+n+1}x^k = 0$, which is in line with the assigned value to $y$ of 0 in line 1 of the algorithm. So the loop invariant is true at initialization.
+
+\subparagraph{Maintainance} During maintenance assuming $i = j+1$ with $0\leq j+1<n$ and sssuming $y$ is given by
+\[
+y = \sum_{k=0}^{n-(j+2)}a_{k+j+2}x^k = a_{j+2} + a_{j+3}x + a_{j+4}x^2 + \ldots + a_nx^{n-(j+2)}
+\]
+at the start of the loop, then at the start of the next iteration, $i=j$, $y$ is given by
+\begin{equation*}
+\begin{split}
+y \gets & a_{j+1} + x\cdot y \\
+      = & a_{j+1} + x\left(a_{i+2} + a_{j+3}x + a_{j+4}x^2 + \ldots + a_nx^{n-(j+2)} \right)\\
+      = & a_{j+1} + a_{i+2}x + a_{j+3}x^2 + a_{j+4}x^3 + \ldots + a_nx^{n-(j+1)}\\
+\end{split}
+\end{equation*}
+which corresponds to the loop invariant at iteration $i=j$. So, the loop invariant holds in the maintainance step as well.
+
+\subparagraph{Termination}
+At termination $i=-1$ so the loop invariant becomes the full polynomial,
+\[
+y = \sum_{k=0}^{n}a_kx^k = a_0 + a_1x + a_2x^2 + \ldots + a_kx^k.
+\]
+Assuming the invariant holds true at the start of the iteration, the algorithm evaluates $y$ to the correct value.
+
+\paragraph{d. Conclusion}
+In conclusion, the loop invariant holds true at initialization, through maintainance all the way to termination by induction, and ends with a correct evaluation of the polynomial, so we can conclude that the algorithm is correct. 
+
 \end{document}
