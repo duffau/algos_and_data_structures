@@ -5,7 +5,6 @@
 #include "sorting_algos.h"
 
 void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *csvfile, int sizes[], int sizes_len, int reps);
-void checkSortedArray(int array[], int len);
 
 int main(int argc, char** argv) {
 	int reps = 10000;
@@ -43,19 +42,20 @@ int main(int argc, char** argv) {
 	print_array(sizes, sizes_len);
 
 	FILE *csvfile; 
-	csvfile = fopen("time_measurments.csv", "w");
+	csvfile = fopen("sorting_algos_time_measurments.csv", "w");
 	fprintf(csvfile, "size,avg_time,name\n");
 	fclose(csvfile);
-	csvfile = fopen("time_measurments.csv", "a");
+	csvfile = fopen("sorting_algos_time_measurments.csv", "a");
 
 	if (csvfile == NULL) {
 		printf("Error opening csv file!");
 		exit(1);
 	}
-	timeSortingAlgoWorstCase(*InsertionSort, "insertion_sort", csvfile, sizes, sizes_len, reps);
-	timeSortingAlgoWorstCase(*MergeSort, "merge_sort", csvfile, sizes, sizes_len, reps);
-	timeSortingAlgoWorstCase(*BinaryInsertionSort, "binary_insertion_sort", csvfile, sizes, sizes_len, reps);
-	timeSortingAlgoWorstCase(*SelectionSort, "selection_sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*InsertionSort, "Insertion sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*MergeSort, "Merge sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*BinaryInsertionSort, "Insertion sort w. binary search", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*SelectionSort, "Selection sort", csvfile, sizes, sizes_len, reps);
+	timeSortingAlgoWorstCase(*BubbleSort,"Bubblesort", csvfile, sizes, sizes_len, reps);
 	fclose(csvfile);
 
 	
@@ -93,16 +93,3 @@ void timeSortingAlgoWorstCase(void (*sortingAlgo)(int*, int), char *name, FILE *
 	}
 }
 
-void checkSortedArray(int array[], int len) {
-	int i;
-
-	for (i=0; i<len-1; i++) {
-		if (array[i] <= array[i+1]) {
-
-		} else  {
-			printf("Array is not sorted.\n");
-			print_array(array, len);
-			exit(1);
-		}
-	}
-}

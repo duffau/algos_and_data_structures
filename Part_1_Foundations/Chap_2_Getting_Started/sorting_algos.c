@@ -130,3 +130,18 @@ int smallestElement(int array[], int start, int end) {
 	}
 	return index_of_smallest_element;
 }
+
+void BubbleSort(int array[], int len) {
+	int i, j;
+	int temp;
+	for (i=0; i<len; i++) {
+		for (j=len-1; j>0; j--) {
+			if (array[j] <array[j-1]) {
+				temp = array[j];
+				array[j] = array[j-1];
+				array[j-1] = temp;
+			}
+		}
+	}
+
+}
