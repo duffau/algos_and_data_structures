@@ -5,7 +5,7 @@ This repo contains C programs and exercise answers, which are the result of my s
 
 ## Part 1 - Foundations
 
-### Getting Started
+### Chapter 2 - Getting Started
 
 #### Sorting algorithms
 ![Sorting algos worst case timings](https://raw.githubusercontent.com/duffau/algos_and_data_structures/master/Part_1_Foundations/Chap_2_Getting_Started/sorting_algos_time_measurments.png)
@@ -22,3 +22,6 @@ y = a0 + a1*x + a2*x^2 + ... + an*x^n
 ```
 it's possible to evaluate a Polynomial in linear time, instead of quadratic running time of a naive implementation.
 
+### Chapter 3 - Growth of functions
+
+<img src="https://rawgit.com/duffau/algos_and_data_structures/master/svgs/ac8dc42a75d26a5f63c989854edf4abe.svg?invert_in_darkmode" align=middle width=87.7107pt height=24.56553pt/>
