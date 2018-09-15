@@ -176,4 +176,14 @@ Assuming the invariant holds true at the start of the iteration, the algorithm e
 \paragraph{d. Conclusion}
 In conclusion, the loop invariant holds true at initialization, through maintainance all the way to termination by induction, and ends with a correct evaluation of the polynomial, so we can conclude that the algorithm is correct. 
 
+\subsubsection*{Problem 2-4 Inversions}
+
+\paragraph{a.}
+The array $A=\langle 2, 3, 8, 6, 1 \rangle$ has the inversions $(4,5)$, $(3,5)$, $(2,5)$, $(1,5)$ and $(3,4)$.
+\paragraph{b.}
+The array with all the elements in reverse order, $A=\langle n, n-1, \ldots,2,1 \rangle$,  has the most \emph{inversions}. The last element $A[n]$ appears in $n-1$ inversions, since all other elements are greater and have a smaller index. Element $A[n-1]$ appears in $n-2$ inversions, since all elements to the left are greater and have a smaller index. So, starting from the left the number of inversions for each element in the array is, $n-1, n-2, \ldots, 1, 0$. So the total number of inversions in the inverted array are,
+\[
+\sum_{k=1}^{n} (k-1) = \sum_{k=1}^{n} k - n = \frac{n(n+1)}{2} - n = \frac{n(n - 1)}{2}, \quad \text{for} \quad n>0.
+\]
 \end{document}
+\grid
