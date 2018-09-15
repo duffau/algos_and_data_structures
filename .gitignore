@@ -16,6 +16,7 @@ __pycache__/
 # TeX additional output
 *.aux
 *.log
+*.synctex.gz
 
 # Exceptions
 !*_time_measurments.png

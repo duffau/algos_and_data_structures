@@ -1,0 +1,20 @@
+\documentclass{article}
+\usepackage{amsmath}
+\usepackage{amssymb}
+
+
+\title{Exercise answers - Chapter 3 - Growth of functions}
+\author{Christian Duffau-Rasmussen}
+
+\begin{document}
+
+\maketitle
+
+\subsubsection*{Exercise 3.1-1}
+
+Defining $h(n) = \max(f(n), g(n))$. Since $f$ and $g$ are assymptotically, non-negative it holds that, $f(n)+ g(n) \leq 2h(n)$ and $f(n) + g(n)\geq h(n)$ for all $n>n_0$, for some $n_0$. So, we have,
+\[
+\frac{1}{2}(f(n) + g(n)) \leq h(n) \leq f(n) + g(n)\quad\forall n>n_0
+\]
+which ensures that $h(n)$ is a member of $\Theta(f(n) + g(n))$, with constants $c_1=1/2$ and $c_2=1$. 
+\end{document}
