@@ -17,4 +17,16 @@ Defining $h(n) = \max(f(n), g(n))$. Since $f$ and $g$ are assymptotically, non-n
 \frac{1}{2}(f(n) + g(n)) \leq h(n) \leq f(n) + g(n)\quad\forall n>n_0
 \]
 which ensures that $h(n)$ is a member of $\Theta(f(n) + g(n))$, with constants $c_1=1/2$ and $c_2=1$. 
+
+\subsubsection*{Exercise 3.1-2}
+
+For $f(n)=(n+a)^b$ to be a member of the set $\Theta(n^b)$, there must exist constants $c_1$ and $c_2$ such that,
+\begin{equation} \label{eq:power}
+c_1n^b \leq (n+a)^b \leq c_2n^b 
+\end{equation} 
+for all $n$ greater than some lower bound $n_0$.
+
+First we notice that for some value of $n$, $n+a$ will become positive, and $f$ will we monotonically growing in $n$, from that point on.
+We also notice that $(n+a)^b\rightarrow n^b$ as $n\rightarrow\infty$. So \eqref{eq:power} will hold for some $n_0$, with $c_1=1-\epsilon$ and $c_2=1+\epsilon$ for some positive $\epsilon$, hence $(n+a)^b=\Theta(n^b)$.
+
 \end{document}
