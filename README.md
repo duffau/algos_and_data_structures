@@ -24,4 +24,4 @@ it's possible to evaluate a Polynomial in linear time, instead of quadratic runn
 
 ### Chapter 3 - Growth of functions
 
-<img src="https://rawgit.com/duffau/algos_and_data_structures/master/svgs/ac8dc42a75d26a5f63c989854edf4abe.svg?invert_in_darkmode" align=middle width=87.7107pt height=24.56553pt/>
+See [here]().
