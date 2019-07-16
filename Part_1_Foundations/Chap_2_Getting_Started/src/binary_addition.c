@@ -8,6 +8,7 @@ unsigned char xor(unsigned char a, unsigned char b) {
 
 
 int main() {
+	printf("Binary addition\n---------------\n");
 	printf("0 xor 0 = %d\n", xor(0, 0));
 	printf("1 xor 0 = %d\n", xor(1, 0));
 	printf("0 xor 1 = %d\n", xor(0, 1));
@@ -15,7 +16,7 @@ int main() {
 
 	unsigned char a[] = {1,1,1,1,0,1,0,1};
 	unsigned char b[] = {1,1,1,1,0,0,0,1};
-	unsigned char c[] = {0,0,0,0,0,0,0,0,0};
+	unsigned char c[] = {0,0,0,0,0,0,0,0};
 	unsigned char carry[] = {0,0,0,0,0,0,0,0,0};
 	int len = 8;
 	
