@@ -1,0 +1,1 @@
+https://www.quora.com/In-a-C-program-with-the-function-int-*-malloc-sizeof-int-what-does-int-*-mean
