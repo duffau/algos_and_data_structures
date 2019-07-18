@@ -10,6 +10,8 @@
 
 \maketitle
 
+\subsection*{Exercises}
+
 \subsubsection*{Exercise 3.1-1}
 
 Defining $h(n) = \max(f(n), g(n))$. Since $f$ and $g$ are assymptotically, non-negative it holds that, $f(n)+ g(n) \leq 2h(n)$ and $f(n) + g(n)\geq h(n)$ for all $n>n_0$, for some $n_0$. So, we have,
@@ -37,7 +39,43 @@ The theorem follows from the definitions of $O(\cdot)$, $\Omega(\cdot)$ and $\Th
 
 We have that $f(n)$ is $\Theta(g(n))$ if only if it's bounded from below by $c_1g(n)$ and bounded from above by $c_2g(n)$ for all $n$ above a given threshold $n_0$. If $f(n)$ is $O(g(n))$ it is bounded from below by $c_1g(n)$ and if $f(n)$ is $\Omega(g(n))$ it's bounded from above by $c_2g(n)$, for all $n$ above some threshold, hence if $f$ is both $O(g)$ and $\Omega(g)$ it must be $\Theta(g)$.
 
-\subsubsection*{Exercise 3.2-1}
+\subsubsection*{Exercise 3.2-7}
+
+The Finbonacci sequence is given by,
+\begin{align*}
+F_0 &= 0\\
+F_1 &= 1\\
+F_i &= F_{i-1} + F_{i-2}\qquad i\geq 2.
+\end{align*}
+the Golden ratio and it's conjugate are,
+\[
+\phi = \frac{1+\sqrt{5}}{2}\qquad\hat{\phi} = \frac{1-\sqrt{5}}{2}.
+\]
+
+The claims is that the $i$-th Fibonnaci is given by the function,
+\[
+f(i) = \frac{\phi^i-\hat{\phi}^i}{\sqrt{5}},
+\]
+that is, $F_i = f(i)$ for all $i\geq0$.
+\paragraph{Basis step}
+We see that,
+\begin{align*}
+f(0) &= \frac{\phi^0-\hat{\phi}^0}{\sqrt{5}} = 0 = F_0\\
+f(1) &= \frac{\phi^1-\hat{\phi}^1}{\sqrt{5}} = \frac{(1+\sqrt{5}-1+\sqrt{5})/2}{\sqrt{5}} = 1 = F_1.\\
+\end{align*}
+
+
+\paragraph{Induction step} Assuming that $F_{i-1}=f(i-1)$ and $F_{i-2}=f(i-2)$ we have,
+\[
+F_i = f(i-1)+ f(i-2)
+\]
+we would like to show that $f(i)=f(i-1)+ f(i-2)$ for all $i\geq2$, then by induction the claims $f(i) = F_i$ will be true.
+
+The golden ratio and it's conjugate are solutions to $x^2 = x+1$ so we have,
+\begin{align*}
+\phi^{i-2} &= \frac{\phi^i}{\phi+1} \\
+\hat{\phi}^{i-2} &= \frac{\hat{\phi}^i}{\hat{\phi}+1} \\
+\end{align*}
 
 
 \end{document}
