@@ -29,7 +29,7 @@ c_1n^b \leq (n+a)^b \leq c_2n^b
 for all $n$ greater than some lower bound $n_0$.
 
 First we notice that for some value of $n$, $n+a$ will become positive, and $f$ will we monotonically growing in $n$, from that point on.
-We also notice that $(n+a)^b\rightarrow n^b$ as $n\rightarrow\infty$. So \eqref{eq:power} will hold for some $n_0$, with $c_1=1-\epsilon$ and $c_2=1+\epsilon$ for some positive $\epsilon$, hence $(n+a)^b=\Theta(n^b)$.
+We also notice that $(n+a)^b\rightarrow n^b$ as $n\rightarrow\infty$. So \eqref{eq:power} will hold for some $n_0$, with $c_1=1-\epsilon$ and $c_2=1+\epsilon$ for some positive $\epsilon$, hence $(n+a)^b=\Theta(n^b)$.$\square$
 
 \subsubsection*{Exercise 3.1-5}
 
@@ -37,7 +37,7 @@ Theorem 3.1 states, for any two functions $f(n)$ and $g(n)$, we have $f(n)= \The
 
 The theorem follows from the definitions of $O(\cdot)$, $\Omega(\cdot)$ and $\Theta(\cdot)$. 
 
-We have that $f(n)$ is $\Theta(g(n))$ if only if it's bounded from below by $c_1g(n)$ and bounded from above by $c_2g(n)$ for all $n$ above a given threshold $n_0$. If $f(n)$ is $O(g(n))$ it is bounded from below by $c_1g(n)$ and if $f(n)$ is $\Omega(g(n))$ it's bounded from above by $c_2g(n)$, for all $n$ above some threshold, hence if $f$ is both $O(g)$ and $\Omega(g)$ it must be $\Theta(g)$.
+We have that $f(n)$ is $\Theta(g(n))$ if only if it's bounded from below by $c_1g(n)$ and bounded from above by $c_2g(n)$ for all $n$ above a given threshold $n_0$. If $f(n)$ is $O(g(n))$ it is bounded from below by $c_1g(n)$ and if $f(n)$ is $\Omega(g(n))$ it's bounded from above by $c_2g(n)$, for all $n$ above some threshold, hence if $f$ is both $O(g)$ and $\Omega(g)$ it must be $\Theta(g)$.$\square$
 
 \subsubsection*{Exercise 3.2-7}
 
@@ -53,9 +53,9 @@ the Golden ratio and it's conjugate are,
 \]
 
 The claims is that the $i$-th Fibonnaci is given by the function,
-\[
+\begin{equation} \label{eq:fibclosedform}
 f(i) = \frac{\phi^i-\hat{\phi}^i}{\sqrt{5}},
-\]
+\end{equation}
 that is, $F_i = f(i)$ for all $i\geq0$.
 \paragraph{Basis step}
 We see that,
@@ -66,16 +66,30 @@ f(1) &= \frac{\phi^1-\hat{\phi}^1}{\sqrt{5}} = \frac{(1+\sqrt{5}-1+\sqrt{5})/2}{
 
 
 \paragraph{Induction step} Assuming that $F_{i-1}=f(i-1)$ and $F_{i-2}=f(i-2)$ we have,
-\[
-F_i = f(i-1)+ f(i-2)
-\]
-we would like to show that $f(i)=f(i-1)+ f(i-2)$ for all $i\geq2$, then by induction the claims $f(i) = F_i$ will be true.
+\begin{align*}
+F_i &= f(i-1)+ f(i-2)\\
+\end{align*}
+
+we would like to show that $f(i)=f(i-1) + f(i-2)$ for all $i\geq2$, then by induction the claim $f(i) = F_i$ for all $i$ will be true.
 
 The golden ratio and it's conjugate are solutions to $x^2 = x+1$ so we have,
 \begin{align*}
-\phi^{i-2} &= \frac{\phi^i}{\phi+1} \\
-\hat{\phi}^{i-2} &= \frac{\hat{\phi}^i}{\hat{\phi}+1} \\
+\phi^{i-1} + \phi^{i-2} &= \frac{\phi^i}{\phi} + \frac{\phi^i}{\phi+1}\\
+						&= \frac{\phi\phi^i + (\phi+1)\phi^i}{\phi^2 + \phi}\\
+						&= \frac{(2\phi + 1)\phi^i}{\phi^2+\phi}\\
+						&= \frac{(\phi^2 + \phi)\phi^i}{\phi^2+\phi}\\
+						&= \phi^i
 \end{align*}
-
+and similarly for $\hat{\phi}$,
+\begin{align*}
+\hat{\phi}^{i-1} + \hat{\phi}^{i-2} &= \hat{\phi}^i.
+\end{align*}
+From this fact we get, 
+\begin{align*}
+f(i-1) + f(i-2) &= \frac{\phi^{i-1}-\hat{\phi}^{i-1} + \phi^{i-2}-\hat{\phi}^{i-2}}{\sqrt{5}}\\
+&= \frac{\phi^i-\hat{\phi}^i }{\sqrt{5}}\\
+&= f(i)
+\end{align*}
+so under the assumptions in the induction step, $F_i = f(i)$ for $i\geq2$. By the basis step $F_0$ and $F_1$ are given by $f(0)$ and $f(1)$, so by induction all Fibonacci numbers can be calculated with \eqref{eq:fibclosedform}.$\square$
 
 \end{document}
